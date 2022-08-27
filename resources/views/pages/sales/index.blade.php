@@ -36,9 +36,13 @@
                             <td>{{$value->products->name}}</td>
                             <td>@php
                               $count1=0;
-                                if($value->payment_mode=='Cash')
+                              $amount1=0;
+                                if($value->payment_mode=='Cash' && $value->products->id==$value->product_id) {
                                 $count1=$value->quantity;
-                                $amount1=$value->total_amount;
+                                $amount1=$value->total_amount; }
+                                else {
+                                  $count1=0;
+                                }
                             @endphp
                             {{$count1}}
                           </td>
@@ -46,18 +50,29 @@
                             <td>
                               @php
                               $count2=0;
-                                if($value->payment_mode=='Credit')
+                              $amount2=0;
+                                if($value->payment_mode=='Credit' && $value->products->id==$value->product_id) {
                                 $count2=$value->quantity;
-                                $amount2=$value->total_amount;
+                                $amount2=$value->total_amount; }
+
+                                else {
+                                  $count1=0;
+                                }
                             @endphp
                             {{$count2}}
                             </td>
                             <td>{{$amount2}}</td>
                             <td>@php
-                              if($value->payment_mode=='MFS')
-                              $count3=0;
-                              $count3=$value->quantity;
-                                $amount3=$value->total_amount;
+                               $count3=0;
+                               $amount3=0;
+                              if($value->payment_mode=='MFS' && $value->products->id==$value->product_id) {
+                               
+                                $count3=$value->quantity;
+                                $amount3=$value->total_amount; }
+
+                                else {
+                                  $count3=0;
+                                }
                           @endphp
                           {{$count3}}
                           </td>
